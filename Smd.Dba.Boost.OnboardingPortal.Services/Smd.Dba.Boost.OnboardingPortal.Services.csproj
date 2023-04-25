@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Smd.Dba.Boost.OnboardingPortal.Contract\Smd.Dba.Boost.OnboardingPortal.Contract.csproj" />
+        <ProjectReference Include="..\Smd.Dba.Boost.OnboardingPortal.DataAccess\Smd.Dba.Boost.OnboardingPortal.DataAccess.csproj" />
+    </ItemGroup>
+
+</Project>
