@@ -7,7 +7,8 @@ riderModule.iml
 *.dockerignore
 
 
-
 Smd.Dba.Boost.OnboardingPortal.WebApi/Properties/launchSettings.json
+
+.idea
 
 
