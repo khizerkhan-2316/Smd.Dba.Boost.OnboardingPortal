@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="DAOs\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Smd.Dba.Boost.OnboardingPortal.Contract\Smd.Dba.Boost.OnboardingPortal.Contract.csproj" />
     </ItemGroup>
 

@@ -9,6 +9,8 @@ public interface IMsSql
 
     Task<int> ExecuteAsync(string sql, CancellationToken token, IDbTransaction? dbTransaction = null);
 
+    Task<T> ExecuteScalarAsync<T>(string sql, object param, CancellationToken cancellationToken, IDbTransaction? dbTransaction = null);
+
     Task<IEnumerable<T>> QueryAsync<T>(string sql, object param, CancellationToken cancellationToken,
         IDbTransaction? dbTransaction = null);
 
@@ -17,6 +19,7 @@ public interface IMsSql
 
     Task<T> QuerySingleOrDefaultAsync<T>(string sql, object param, CancellationToken cancellationToken,
         IDbTransaction? dbTransaction = null);
+    
 
     string GetConnectionStringKey();
 }

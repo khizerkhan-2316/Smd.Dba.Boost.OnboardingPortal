@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smd.Dba.Boost.OnboardingPor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smd.Dba.Boost.OnboardingPortal.Services", "Smd.Dba.Boost.OnboardingPortal.Services\Smd.Dba.Boost.OnboardingPortal.Services.csproj", "{9FFE48FB-6FA1-419D-A20E-7E69CADE9F96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smd.Dba.Boost.OnboardingPortal.Client", "Smd.Dba.Boost.OnboardingPortal.Client\Smd.Dba.Boost.OnboardingPortal.Client.csproj", "{932C26DA-5B2A-4BEC-A6AE-884B0421DDD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{9FFE48FB-6FA1-419D-A20E-7E69CADE9F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FFE48FB-6FA1-419D-A20E-7E69CADE9F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FFE48FB-6FA1-419D-A20E-7E69CADE9F96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932C26DA-5B2A-4BEC-A6AE-884B0421DDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932C26DA-5B2A-4BEC-A6AE-884B0421DDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932C26DA-5B2A-4BEC-A6AE-884B0421DDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932C26DA-5B2A-4BEC-A6AE-884B0421DDD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

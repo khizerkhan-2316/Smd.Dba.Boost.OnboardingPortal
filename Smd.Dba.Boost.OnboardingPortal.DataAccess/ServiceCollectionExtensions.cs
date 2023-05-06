@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Smd.Dba.Boost.OnboardingPortal.DataAccess.Repositories;
 using Smd.Dba.Boost.OnboardingPortal.DataAccess.SqlClient;
 
 namespace Smd.Dba.Boost.OnboardingPortal.DataAccess;
@@ -14,6 +15,14 @@ public static class ServiceCollectionExtensions
             var configuration = provider.GetRequiredService<IConfiguration>();
             return new MsSql(configuration, connectionStringKey);
         });
+    }
+
+    public static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddTransient<IUserRepository, UserRepository>()
+            .AddTransient<ICompanyRepository, CompanyRepository>();
+
+
     }
 }
 

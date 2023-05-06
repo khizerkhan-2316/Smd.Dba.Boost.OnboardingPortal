@@ -1,25 +1,31 @@
+using Smd.Dba.Boost.OnboardingPortal.Client;
 using Smd.Dba.Boost.OnboardingPortal.DataAccess;
-using Smd.Dba.Boost.OnboardingPortal.DataAccess.Repositories;
 using Smd.Dba.Boost.OnboardingPortal.Services;
 using Smd.Dba.Boost.OnboardingPortal.WebApi;
+using Smd.Dba.Boost.OnboardingPortal.WebApi.Middleware;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerGenWithSecurity();
 builder.Services.AddAppsettingsConfiguration();
+builder.Services.AddCorsAndPolicy();
+
+var configuration = builder.Configuration;
+builder.Services.AddJwtAutentication(configuration);
+
+
+builder.Services.AddServices();
+builder.Services.AddAutoMapper();
+
+builder.Services.AddClients();
+
+
 builder.Services.AddMsSql("imssql");
-
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient<IUserService, UserService>();
-
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
@@ -31,11 +37,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseMiddleware<TokenRefreshMiddleware>();
 app.UseAuthorization();
-
+app.UseCors("AllowAnyOrigin");
 app.MapControllers();
-
-
 
 app.Run();

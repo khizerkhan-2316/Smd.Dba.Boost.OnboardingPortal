@@ -62,6 +62,24 @@ public class MsSql : IMsSql
             }
         }    }
 
+    public async Task<T> ExecuteScalarAsync<T>(string sql, object param, CancellationToken cancellationToken, IDbTransaction? dbTransaction = null)
+    {
+        using IDbConnection connection = await CreateConnectionAsync(cancellationToken);
+        {
+            try
+            {
+                var command = new CommandDefinition(sql, param, dbTransaction, cancellationToken: cancellationToken);
+
+                return await connection.ExecuteScalarAsync<T>(command);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("An error occurred while querying the database.", e);
+
+            }
+        }
+    }
+
     public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? param, CancellationToken cancellationToken, IDbTransaction? dbTransaction = null)
     {
         using IDbConnection connection = await CreateConnectionAsync(cancellationToken);

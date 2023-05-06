@@ -9,12 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="..\.dockerignore">
-            <Link>.dockerignore</Link>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Dapper" Version="2.0.123" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0-preview.3.23174.8" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0-preview.3.23174.8" />
@@ -34,13 +28,22 @@
         <None Update="Scripts\create-users-table.sql">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Scripts\003-create-contactinfos-table.sql">
+        <None Update="Scripts\002-create-companies-table.sql">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Scripts\001-create-roles-table.sql">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Scripts\002-create-users-table.sql">
+        <None Update="Scripts\004-create-users-table.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Scripts\003-create-companies-trigger.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Scripts\005-create-users-trigger.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Scripts\006-create-companies-after-trigger.sql">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
