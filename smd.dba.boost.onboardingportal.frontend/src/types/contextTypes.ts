@@ -4,6 +4,7 @@ export type AuthContextType = {
   isAuthenticated: boolean;
   role: string;
   token: string;
+  username: string;
   SetAuthenticationState: () => void;
   RemoveAuthenticationState: () => void;
 };

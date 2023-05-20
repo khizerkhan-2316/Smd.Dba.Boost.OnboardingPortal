@@ -12,6 +12,8 @@ public class Company
     
     public string? City { get; set; }
     
+    public string? Telephone { get; set; }
+    
     public string? Cvr { get; set; }
     
     public string? LoginEmail { get; set; }

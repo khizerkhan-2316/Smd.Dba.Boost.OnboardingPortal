@@ -18,16 +18,29 @@ function ResetPasswordPage() {
   async function resetPasswordHandler(password: string): Promise<void> {
     try {
       setLoading(true);
-      await resetPassword(token!, password);
-      showModal({
-        title: 'Success!',
-        message: 'Your password has been reset',
-        showCancelButton: false,
-        open: true,
-        onConfirm: () => {
-          hideModal();
-        },
-      });
+      const response = await resetPassword(token!, password);
+
+      if (response.status === 200) {
+        showModal({
+          title: 'Success!',
+          message: 'Din adgangskode er blevet nulstillet.',
+          showCancelButton: false,
+          open: true,
+          onConfirm: () => {
+            hideModal();
+          },
+        });
+      } else {
+        showModal({
+          title: 'Fejl!',
+          message: `Der skete en fejl med at nulstille din adgangskode: ${response.statusText}`,
+          showCancelButton: false,
+          open: true,
+          onConfirm: () => {
+            hideModal();
+          },
+        });
+      }
     } catch (error: any) {
       showModal({
         title: 'Fejl!',
@@ -69,6 +82,8 @@ function ResetPasswordPage() {
         title="Nulstil din adgangskode"
         linkTitle="Tilbage til login"
         path="/login"
+        showLogo={true}
+        showSideCard={true}
       >
         <ResetPasswordForm onSubmit={resetPasswordHandler} />
       </BaseCard>

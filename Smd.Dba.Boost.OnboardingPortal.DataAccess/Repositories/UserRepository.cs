@@ -1,5 +1,6 @@
 ﻿using Smd.Dba.Boost.OnboardingPortal.Contract;
 using Smd.Dba.Boost.OnboardingPortal.DataAccess.DAOs;
+using Smd.Dba.Boost.OnboardingPortal.DataAccess.Repositories.Interfaces;
 using Smd.Dba.Boost.OnboardingPortal.DataAccess.SqlClient;
 
 namespace Smd.Dba.Boost.OnboardingPortal.DataAccess.Repositories;
@@ -15,6 +16,18 @@ public class UserRepository : IUserRepository
 
     public async Task CreateUserAsync(User user, CancellationToken token)
     {
+        
+        const string roleCheckSql =  @"SELECT Id FROM [dbo].[Roles] WHERE Role = @RoleName";
+        var roleId = await _msSql.ExecuteScalarAsync<Guid?>(roleCheckSql, new { RoleName = user.Role }, token);
+        
+        
+        if (roleId == null || roleId == Guid.Empty)
+        {
+            throw new Exception("Role does not exist.");
+        }
+
+        user.RoleId = roleId.Value;
+        
         const string sql = @"INSERT INTO [dbo].[Users] (Id, Username, Email, Password, RoleId, CompanyId ) VALUES (@Id, @Username, @Email, @Password, @RoleId, @CompanyId)";
         await _msSql.ExecuteAsync(sql, user, token);
 
@@ -28,6 +41,23 @@ public class UserRepository : IUserRepository
         const string sql = "SELECT Id, Username, Email, RoleId, CompanyId FROM Users";
 
         return await _msSql.QueryAsync<User>(sql, token);
+    }
+
+    public async Task<IEnumerable<User>> GetUsersByCompanyId(Guid companyId, CancellationToken cancellationToken)
+    {
+        const string sql = @"SELECT u.Id, u.Username, u.Email, u.RoleId, u.CompanyId, r.Role
+                            
+                             FROM Users u 
+                             JOIN Roles r ON u.RoleId = r.Id
+                             WHERE u.CompanyId = @companyId";
+
+        var args = new
+        {
+            companyId
+        };
+
+        return await _msSql.QueryAsync<User>(sql, args, cancellationToken);
+
     }
 
     public async Task<User?> GetUserById(Guid id, CancellationToken token)
@@ -90,23 +120,20 @@ public class UserRepository : IUserRepository
 
     }
 
-    public async Task UpdateUserAsync(Guid id, UserDto user, CancellationToken token)
+    public async Task UpdateUserAsync(Guid id, User user, CancellationToken token)
     {
+        user.Id = id;
         const string sql = @"UPDATE Users 
-                            SET 
+                        SET 
                             Username = @Username, 
-                            CompanyName = @CompanyName, 
-                            Email = @Email, 
-                            RoleId = @RoleId,
-                            CompanyId = @CompanyId
-                            WHERE 
-                                Id = @Id AND 
-                                            NOT EXISTS (SELECT 1 FROM Users WHERE Email = @Email AND Id != @Id) AND 
-                                            EXISTS (SELECT 1 FROM Roles WHERE Id = @RoleId)
-";
+                            Email = @Email
+                        WHERE 
+                            Id = @Id AND 
+                            NOT EXISTS (SELECT 1 FROM Users WHERE Email = @Email AND Id != @Id)";
 
         await _msSql.ExecuteAsync(sql, user, token);
     }
+
 
     public async Task UpdateUserPasswordByIdAsync(Guid id, string password, CancellationToken cancellationToken)
     {

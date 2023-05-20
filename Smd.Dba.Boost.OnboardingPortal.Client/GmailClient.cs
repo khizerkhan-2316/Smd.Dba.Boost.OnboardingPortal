@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
 using Smd.Dba.Boost.OnboardingPortal.Contract;
+using Smd.Dba.Boost.OnboardingPortal.Contract.DTOs;
 
 namespace Smd.Dba.Boost.OnboardingPortal.Client;
 
@@ -16,7 +17,7 @@ public class GmailClient : IEmailClient
     public GmailClient(IConfiguration configuration)
     {
         _configuration = configuration;
-        _emailClientSettings = _configuration.GetSection("EmailClientSettings").Get<EmailClientSettings>();
+        _emailClientSettings = _configuration.GetSection("EmailSettings").Get<EmailClientSettings>();
     }
 
 

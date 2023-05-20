@@ -46,6 +46,15 @@
         <None Update="Scripts\006-create-companies-after-trigger.sql">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Scripts\007-create-contactpersons-table.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Scripts\008-create-onboardings-table.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Scripts\009-create-productfeeds-table.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

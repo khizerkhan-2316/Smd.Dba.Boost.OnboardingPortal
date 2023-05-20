@@ -18,8 +18,9 @@ function ResetPage() {
       await sendResetPasswordEmail(email);
       showModal({
         showCancelButton: false,
-        title: 'Email Sent',
-        message: 'Please check your email to reset your password',
+        title: 'Email afsendt',
+        message:
+          'Hvis din email eksisterer i systemet vil du modtage en mail med et link til at nulstille din adgangskode.',
         onConfirm: () => {
           hideModal();
         },
@@ -46,6 +47,8 @@ function ResetPage() {
         title="Få tilsendt en nulstillingsmail"
         linkTitle="Tilbage til login"
         path="/login"
+        showLogo={true}
+        showSideCard={true}
       >
         <ResetPasswordMailForm onSubmit={resetPasswordHandler} />
       </BaseCard>

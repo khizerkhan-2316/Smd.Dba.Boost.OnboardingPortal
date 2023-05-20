@@ -1,14 +1,10 @@
-﻿namespace Smd.Dba.Boost.OnboardingPortal.Contract;
+﻿namespace Smd.Dba.Boost.OnboardingPortal.Contract.DTOs;
 
 public class CompanyDto
 {
     public Guid Id { get; set; }
     public string CompanyName { get; set; }
-    public string? StreetName { get; set; }
-    public string? PostalCode { get; set; }
-    public string? City { get; set; }
     public string? Telephone { get; set; }
     public string? Cvr { get; set; }
-    public string? LoginEmail { get; set; }
-    public string? InvoiceEmail { get; set; }
+  
 }

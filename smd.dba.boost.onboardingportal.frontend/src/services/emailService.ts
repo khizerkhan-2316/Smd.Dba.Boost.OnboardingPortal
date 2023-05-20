@@ -5,13 +5,12 @@ import {
 } from '../utils/constants';
 
 export async function sendResetPasswordEmail(email: string): Promise<void> {
-  const resetPasswordUrl = SEND_RESET_PASSWORD_MAIL_ENDPOINT;
   const requestBody = {
     recipientEmail: email,
-    resetPasswordUrl: resetPasswordUrl,
+    resetPasswordUrl: CLIENT_RESET_PASSWORD_URL,
   };
 
   try {
-    await axios.post(CLIENT_RESET_PASSWORD_URL, requestBody);
+    await axios.post(SEND_RESET_PASSWORD_MAIL_ENDPOINT, requestBody);
   } catch (error) {}
 }

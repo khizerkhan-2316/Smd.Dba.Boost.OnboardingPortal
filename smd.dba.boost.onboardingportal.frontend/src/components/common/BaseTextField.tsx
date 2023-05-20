@@ -12,6 +12,7 @@ function BaseTextField({
   fullWidth,
   margin,
   endAdornment,
+  helperText,
 }: BaseTextFieldProps) {
   return (
     <TextField
@@ -29,6 +30,7 @@ function BaseTextField({
           <InputAdornment position="end">{endAdornment}</InputAdornment>
         ),
       }}
+      helperText={helperText}
     />
   );
 }

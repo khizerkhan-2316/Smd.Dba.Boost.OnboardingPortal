@@ -3,3 +3,7 @@ export const RESET_PASSWORD_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/au
 export const VERIFY_TOKEN_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/authentication/verify`;
 export const SEND_RESET_PASSWORD_MAIL_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/emails/reset-password`;
 export const CLIENT_RESET_PASSWORD_URL = `${process.env.REACT_APP_CLIENT_BASE_URL}/reset-password`;
+export const COMPANIES_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/companies`;
+export const USERS_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/users`;
+export const CONTACT_PERSONS_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/contactpersons`;
+export const PRODUCTFEEDS_ENDPOINT = `${process.env.REACT_APP_API_BASE_URL}/productfeeds`;

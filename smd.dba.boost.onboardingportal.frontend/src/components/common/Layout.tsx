@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
-
+import Navigtionbar from './Navigationbar';
 function Layout() {
   return (
-    <main className="App">
-      <h1>This is the layout</h1>
-
-      <Outlet />
-    </main>
+    <div className="App">
+      <Navigtionbar />
+      <main className="Content">
+        <Outlet />
+      </main>
+    </div>
   );
 }
 

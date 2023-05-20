@@ -14,7 +14,7 @@ const ResetPasswordMailForm = ({ onSubmit }: ResetPasswordMailFormProps) => {
   const [isEmailInputTouched, setIsEmailInputTouched] = useState(false);
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, isEmailValid, onSubmit)}>
+    <form onSubmit={(e) => handleSubmit(e, isEmailValid, () => onSubmit(email))}>
       <BaseTextField
         label="Email"
         type="email"

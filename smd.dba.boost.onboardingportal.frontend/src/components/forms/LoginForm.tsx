@@ -24,7 +24,7 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
   return (
     <form
       onSubmit={(e) =>
-        handleSubmit(e, isEmailValid && isPasswordValid, onSubmit)
+        handleSubmit(e, isEmailValid && isPasswordValid, () => onSubmit(email, password))
       }
     >
       <BaseTextField

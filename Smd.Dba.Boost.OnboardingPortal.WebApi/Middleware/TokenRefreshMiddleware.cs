@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using Smd.Dba.Boost.OnboardingPortal.Services;
-using Smd.Dba.Boost.OnboardingPortal.Services.Services;
+using Smd.Dba.Boost.OnboardingPortal.Services.Interfaces;
 
 namespace Smd.Dba.Boost.OnboardingPortal.WebApi.Middleware;
 

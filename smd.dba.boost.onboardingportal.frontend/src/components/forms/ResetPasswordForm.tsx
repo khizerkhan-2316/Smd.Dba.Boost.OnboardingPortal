@@ -14,7 +14,7 @@ const ResetPasswordForm = ({ onSubmit }: ResetPasswordFormProps) => {
   const [isPasswordInputTouched, setIsPasswordInputTouched] = useState(false);
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, isPasswordValid, onSubmit)}>
+    <form onSubmit={(e) => handleSubmit(e, isPasswordValid, () => onSubmit(password))}>
       <BaseTextField
         label="Adgangskode"
         type="password"

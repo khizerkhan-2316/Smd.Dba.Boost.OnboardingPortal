@@ -1,4 +1,4 @@
-function validateEmail(email: string): boolean {
+export function validateEmail(email: string): boolean {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 }
@@ -31,6 +31,22 @@ export function handlePasswordChange(
   );
 }
 
+export function handleInputFieldChange(
+  event: React.ChangeEvent<HTMLInputElement>,
+  setState: React.Dispatch<React.SetStateAction<string>>,
+  setIsValid: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsTouched: React.Dispatch<React.SetStateAction<boolean>>,
+  validationFn?: (value: string) => boolean
+) {
+  const inputValue = event.target.value;
+  setState(inputValue);
+  setIsTouched(true);
+
+  if (validationFn) {
+    setIsValid(validationFn(inputValue));
+  }
+}
+
 export async function handleSubmit(
   event: React.FormEvent<HTMLFormElement>,
   isFormValid: boolean,
@@ -39,5 +55,13 @@ export async function handleSubmit(
   event.preventDefault();
   if (isFormValid) {
     await onSubmit();
+  }
+}
+
+export function isValidUrl(url: string): boolean {
+  try {
+    return Boolean(new URL(url));
+  } catch (error) {
+    return false;
   }
 }

@@ -9,6 +9,7 @@ export type BaseTextFieldProps = {
   fullWidth?: boolean;
   margin?: 'none' | 'dense' | 'normal';
   required?: boolean;
+  helperText?: string;
 };
 
 export type LinkProps = {

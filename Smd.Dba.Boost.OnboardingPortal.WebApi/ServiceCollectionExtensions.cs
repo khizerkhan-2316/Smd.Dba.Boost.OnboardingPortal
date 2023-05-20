@@ -11,6 +11,7 @@ public static class ServiceCollectionExtensions
     public static void AddAppsettingsConfiguration(this IServiceCollection services)
     {
         services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
+            .AddEnvironmentVariables()
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .Build());
 
@@ -20,6 +21,7 @@ public static class ServiceCollectionExtensions
     {
         
         var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtOptions>();
+        jwtSettings.Secret = Environment.GetEnvironmentVariable("JWT_SECRET");
         var key = Encoding.ASCII.GetBytes(jwtSettings.Secret);
         
         services.AddAuthentication(options =>

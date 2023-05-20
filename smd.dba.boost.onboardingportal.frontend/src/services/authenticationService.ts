@@ -32,7 +32,7 @@ export async function authenticateUser(
 export async function resetPassword(
   token: string,
   password: string
-): Promise<void> {
+): Promise<any> {
   const url = RESET_PASSWORD_ENDPOINT;
 
   const config = {
@@ -43,7 +43,7 @@ export async function resetPassword(
   const data = {
     password,
   };
-  await axios.post(url, data, config);
+  return await axios.post(url, data, config);
 }
 
 export async function validateToken(
@@ -55,7 +55,6 @@ export async function validateToken(
       { token: token }
     );
 
-    console.log('TOKEN ENDPOINT', VERIFY_TOKEN_ENDPOINT);
     return response.data;
   } catch (error) {
     throw error;

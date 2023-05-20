@@ -8,5 +8,15 @@
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  background-color: #f1f7fd;
+  background-color: #e1eefa;
+}
+
+.Content {
+  flex: 1;
+  padding: 20px;
+  margin-top: 65px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  min-height: calc(100vh - 65px);
 }

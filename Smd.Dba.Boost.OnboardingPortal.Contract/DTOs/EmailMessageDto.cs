@@ -1,4 +1,4 @@
-﻿namespace Smd.Dba.Boost.OnboardingPortal.Contract;
+﻿namespace Smd.Dba.Boost.OnboardingPortal.Contract.DTOs;
 
 public class EmailMessageDto
 {

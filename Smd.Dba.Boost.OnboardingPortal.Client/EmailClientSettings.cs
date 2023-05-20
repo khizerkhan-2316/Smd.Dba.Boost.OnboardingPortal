@@ -2,6 +2,7 @@
 
 public class EmailClientSettings
 {
-    public string Username { get; set; }
-    public string AppPassword { get; set; }
+    public string Username = Environment.GetEnvironmentVariable("APP_EMAIL");
+
+    public string AppPassword = Environment.GetEnvironmentVariable("APP_PASSWORD");
 }

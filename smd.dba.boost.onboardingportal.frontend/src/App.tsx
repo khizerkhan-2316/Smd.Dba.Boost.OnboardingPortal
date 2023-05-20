@@ -1,48 +1,19 @@
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Role } from './Enums/roles';
-import { LocalStorageKey } from './Enums/localStorageKeys';
 import { RoutesPath } from './Enums/routePaths';
 
 import adminRoutes from './routes/admin/AdminRoutes';
-// import Layout from './components/common/Layout';
+import Layout from './components/common/Layout';
 import RequireAuth from './components/common/RequireAuth';
 import LoginPage from './components/pages/public/LoginPage';
 import ResetPage from './components/pages/public/ResetPage';
 import ResetPasswordPage from './components/pages/public/ResetPasswordPage';
 import NotFoundPage from './components/pages/public/NotFoundPage';
-import { useEffect, useCallback } from 'react';
-import { useAuth } from './hooks/useAuth';
-import { validateToken } from './services/authenticationService';
+import UnauthorizedPage from './components/pages/common/UnauthorizedPage';
 
 import './App.css';
 
 function App() {
-  const { SetAuthenticationState, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-
-  const authenticate = useCallback(async () => {
-    try {
-      const token = localStorage.getItem(LocalStorageKey.ACCESS_TOKEN);
-
-      if (token !== null) {
-        const tokenValidationResult = await validateToken(token!);
-
-        if (tokenValidationResult.isValid) {
-          SetAuthenticationState();
-          navigate(RoutesPath.ADMIN_HOME_PAGE);
-        } else {
-          localStorage.removeItem(LocalStorageKey.ACCESS_TOKEN);
-        }
-      }
-    } catch (error) {}
-  }, [SetAuthenticationState, navigate]);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      authenticate();
-    }
-  }, [isAuthenticated, authenticate]);
-
   return (
     <Routes>
       {/*Public Routes*/}
@@ -57,11 +28,11 @@ function App() {
 
       {/*Protected Routes admin*/}
       <Route element={<RequireAuth allowedRoles={[Role.ADMIN]} />}>
-        <>
+        <Route element={<Layout />}>
           {adminRoutes.map(({ path, element }: any) => (
             <Route key={path} path={path} element={element} />
           ))}
-        </>
+        </Route>
       </Route>
 
       <Route path={RoutesPath.LOGIN_PAGE} element={<LoginPage />} />
@@ -75,6 +46,10 @@ function App() {
         element={<Navigate to={RoutesPath.LOGIN_PAGE} />}
       />
 
+      <Route
+        path={RoutesPath.UNAUTHORIZED_PAGE}
+        element={<UnauthorizedPage />}
+      />
       {/*Not found page*/}
 
       <Route path="*" element={<NotFoundPage />} />

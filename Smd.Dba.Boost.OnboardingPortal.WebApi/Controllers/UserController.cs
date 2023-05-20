@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Smd.Dba.Boost.OnboardingPortal.Contract;
+using Smd.Dba.Boost.OnboardingPortal.Contract.DTOs;
 using Smd.Dba.Boost.OnboardingPortal.Contract.Enums;
 using Smd.Dba.Boost.OnboardingPortal.Services;
+using Smd.Dba.Boost.OnboardingPortal.Services.Interfaces;
 
 namespace Smd.Dba.Boost.OnboardingPortal.WebApi.Controllers;
 
 [ApiController]
-//[Authorize]
+[Authorize]
 [Route("/api/v1/users")]
 [Produces("application/json")]
 
@@ -21,13 +23,13 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    //Create 
-    //[Authorize(Roles = nameof(Role.Admin))]
+    [Authorize(Roles = nameof(Role.Admin))]
     [HttpPost]
     public async Task<ActionResult> CreateUser([FromBody] CreateUserDto user, CancellationToken token)
     {
         try
         {
+            user.Id = Guid.NewGuid();
             await _userService.CreateUserAsync(user, token);
             return Ok();
         }
@@ -40,12 +42,25 @@ public class UserController : ControllerBase
         
     }
     
+    [Authorize(Roles = nameof(Role.Admin))]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(CancellationToken token)
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers([FromQuery] Guid? companyId, CancellationToken token)
     {
-        var users = await _userService.GetUsersAsync(token);
 
-        return Ok(users);
+        IEnumerable<UserDto> users;
+
+
+        if (companyId.HasValue)
+        {
+            users = await _userService.GetUsersByCompanyIdAsync(companyId.Value, token);
+        }
+        else
+        {
+            users = await _userService.GetUsersAsync(token);
+
+        }
+
+        return users.Any() ? Ok(users) : NotFound();
     }
 
     [HttpGet("{id}")]

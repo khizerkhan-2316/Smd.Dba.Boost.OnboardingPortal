@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Smd.Dba.Boost.OnboardingPortal.Contract.Requests;
 using Smd.Dba.Boost.OnboardingPortal.Services;
+using Smd.Dba.Boost.OnboardingPortal.Services.Interfaces;
 
 namespace Smd.Dba.Boost.OnboardingPortal.WebApi.Controllers;
 

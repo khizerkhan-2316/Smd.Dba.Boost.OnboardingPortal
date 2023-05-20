@@ -45,6 +45,7 @@ function LoginPage() {
     const { token, role } = response;
     localStorage.setItem(LocalStorageKey.ROLE, role);
     localStorage.setItem(LocalStorageKey.ACCESS_TOKEN, token);
+    localStorage.setItem(LocalStorageKey.USERNAME, response.username);
     SetAuthenticationState();
   }
 
@@ -62,6 +63,8 @@ function LoginPage() {
         title="Login på din konto"
         linkTitle="Glemt adgangskode?"
         path="/reset"
+        showLogo={true}
+        showSideCard={true}
       >
         <LoginForm onSubmit={loginHandler} />
       </BaseCard>

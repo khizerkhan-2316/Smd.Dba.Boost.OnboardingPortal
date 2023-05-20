@@ -1,0 +1,28 @@
+[
+  {
+    "id": "a01d-231-sa1-2",
+    "category": 11340,
+    "title": "Teflon Phono han stik sæt til max. 8 mm. kabel, guldbelagt",
+    "description": "PRIS-MATCH! SUPRA PPSL Teflon Phono han stik sæt til max. 8 mm. kabel, guldbelagt, rød / sort...",
+    "price": 199,
+    "saleprice": 150,
+    "url": "https://www.example.com/product/a01d-231-sa1-2",
+    "image": "https://via.placeholder.com/600x400",
+    "stocklevel": 1,
+    "brand": "SUPRA",
+    "type": "stereo stik"
+  },
+  {
+    "id": "01-003-4",
+    "category": 11340,
+    "title": "Teflon Phono han stik sæt til max. 8 mm. kabel, guldbelagt",
+    "description": "PRIS-MATCH! SUPRA PPSL Teflon Phono han stik sæt til max. 8 mm. kabel, guldbelagt, rød / sort...",
+    "price": 199,
+    "saleprice": 175,
+    "url": "https://www.example.com/product/01-003-4",
+    "image": "https://via.placeholder.com/600x400",
+    "stocklevel": 5,
+    "brand": "SUPRA",
+    "type": "stereo stik"
+  }
+]

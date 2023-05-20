@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Smd.Dba.Boost.OnboardingPortal.Services.Interfaces;
 using Smd.Dba.Boost.OnboardingPortal.Services.Profiles;
-using Smd.Dba.Boost.OnboardingPortal.Services.Services;
 
 namespace Smd.Dba.Boost.OnboardingPortal.Services;
 
@@ -13,11 +13,19 @@ public static class ServiceCollectionExtensions
             .AddTransient<IAuthenticationService, AuthenticationService>()
             .AddTransient<IHashingService, BcryptHashingService>()
             .AddTransient<ITokenService, JwtTokenService>()
-            .AddTransient<IEmailService, EmailService>();
+            .AddTransient<IEmailService, EmailService>()
+            .AddTransient<IContactPersonService, ContactPersonService>()
+            .AddTransient<IOnboardingService, OnboardingService>()
+            .AddTransient<IProductFeedService, ProductFeedService>()
+            .AddTransient<IRobotService, RobotService>();
     }
 
     public static void AddAutoMapper(this IServiceCollection services)
     {
-        services.AddAutoMapper(typeof(UserMappingProfile), typeof(CompanyMappingProfile));
+        services.AddAutoMapper(
+            typeof(UserMappingProfile), 
+            typeof(CompanyMappingProfile), 
+            typeof(ContactPersonMappingProfile), 
+            typeof(ProductFeedMappingProfile));
     }
 }

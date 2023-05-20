@@ -25,16 +25,19 @@ axiosInstance.interceptors.response.use(
   (error) => Promise.reject(error)
 );
 
-export async function post<T>(endpoint: string, body: object): Promise<T> {
+export async function postRequest<AxiosResponse>(
+  endpoint: string,
+  body: object
+): Promise<AxiosResponse> {
   try {
-    const response = await axiosInstance.post(endpoint, body);
-    return response.data as T;
+    const response: AxiosResponse = await axiosInstance.post(endpoint, body);
+    return response;
   } catch (error) {
     throw new Error('Failed to fetch data');
   }
 }
 
-export async function get<T>(endpoint: string): Promise<T> {
+export async function getRequest<T>(endpoint: string): Promise<T> {
   try {
     const response = await axiosInstance.get(endpoint);
     return response.data as T;
@@ -43,19 +46,24 @@ export async function get<T>(endpoint: string): Promise<T> {
   }
 }
 
-export async function put<T>(endpoint: string, body: object): Promise<T> {
+export async function putRequest<AxiosResponse>(
+  endpoint: string,
+  body: object
+): Promise<AxiosResponse> {
   try {
-    const response = await axiosInstance.put(endpoint, body);
-    return response.data as T;
+    const response: AxiosResponse = await axiosInstance.put(endpoint, body);
+    return response;
   } catch (error) {
     throw new Error('Failed to fetch data');
   }
 }
 
-export async function del<T>(endpoint: string): Promise<T> {
+export async function deleteRequest<AxiosResponse>(
+  endpoint: string
+): Promise<AxiosResponse> {
   try {
-    const response = await axiosInstance.delete(endpoint);
-    return response.data as T;
+    const response: AxiosResponse = await axiosInstance.delete(endpoint);
+    return response;
   } catch (error) {
     throw new Error('Failed to fetch data');
   }
